@@ -1,17 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+
+class ToggleButton extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {activo: true};
+    }    
+
+    // usar esta sintaxis para evitar tener que usar bind(this)
+    manejaEvento = () => {
+        this.setState({activo: !this.state.activo });
+    }
+
+    render() {
+        return(
+        <button id={this.props.id} onClick={this.manejaEvento}>{this.state.activo?'ON':'OFF'}</button>
+        );
+    }
+
+}
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <div>
+        <h1>Ejemplo de Eventos y Estados</h1>
+        <ToggleButton id="miBoton" />
+    </div>
+    ,document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
